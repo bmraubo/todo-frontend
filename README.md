@@ -11,5 +11,8 @@ $ npm install
 
 # Run the application
 $ npm start
+
+# Run tests (if you want)
+$ npm test
 ```
 
