@@ -26,7 +26,6 @@ describe("Testing tasklist...", () => {
         render(<TaskList />)
 
         await waitFor(() => {
-            expect(fetch).toHaveBeenCalled()
             expect(screen.getByText("a final task"))
         })
 
