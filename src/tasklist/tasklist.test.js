@@ -27,7 +27,7 @@ describe("Testing tasklist...", () => {
         render(<TaskList />)
 
         await waitFor(() => {
-            expect(screen.getByText("a final task"))
+            expect(screen.getAllByTestId("a task"))
         })
 
         

@@ -9,7 +9,23 @@ export default function TaskList() {
     const [tasks, setTasks] = useState()
 
     function Task({taskInfo}) {
-        return <button>{taskInfo.task}</button>
+        return <button data-testid="a task">Task: {taskInfo.task} Status: {DoneStatus(taskInfo.done)}</button>
+    }
+
+    function DoneStatus(doneStatus) {
+        if (doneStatus) {
+            return "Done!"
+        } else {
+            return "Not Done!"
+        }
+    }
+
+    function EditButton() {
+        return <button>Edit</button>
+    }
+
+    function DeleteButton() {
+        return <button>Delete</button>
     }
 
     async function getData() {
@@ -34,6 +50,8 @@ export default function TaskList() {
             {tasks.map(task => (
                 <div key= {task.id}>
                     <Task taskInfo={task} />
+                    <EditButton />
+                    <DeleteButton />
                 </div>   
             ))}
             
