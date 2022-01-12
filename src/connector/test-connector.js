@@ -4,7 +4,7 @@ export default class TestConnector {
 
     static fetchAllTasks() {
         let backend = new BackendMock();
-        return backend.retrieveAllTasks();
+        return Promise.resolve(backend.retrieveAllTasks());
     }
 
 

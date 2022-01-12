@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react"
 import { act } from "react-dom/test-utils";
-import Connector from "../connector/connector";
+//import Connector from "../connector/connector";
 import TestConnector from "../connector/test-connector";
 
 export default function TaskList() {
@@ -26,7 +26,6 @@ export default function TaskList() {
     },[])
 
     return(
-
         loading ?
         <h2>loading...</h2> 
         :
