@@ -5,7 +5,18 @@ import Connector from "./connector"
 
 describe("Testing connecting to Backend", () => {
 
-    it("Can retrieve all tasks", () => {
+    it("The Mock is working correctly", async () => {
+        global.fetch = jest.fn(() => 
+        Promise.resolve({
+            json: () => Promise.resolve(BackendMock.mockTest())
+        }))
+
+        let answer = await Connector.fetchAllTasks()
+
+        expect(answer["works"]).toBe(true)
+    })
+
+    it("Can retrieve all tasks", async () => {
         global.fetch = jest.fn(() => 
         Promise.resolve({
             json: () => Promise.resolve(BackendMock.retrieveAllTasks())
@@ -17,7 +28,7 @@ describe("Testing connecting to Backend", () => {
             {"id": 3, "task": "a final task", "done": false}
         ]
 
-        expect(Connector.fetchAllTasks).toBe(expectedReturnValue);
+        expect(await Connector.fetchAllTasks()).toStrictEqual(expectedReturnValue);
     })
 
 })

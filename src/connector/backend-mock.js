@@ -1,6 +1,10 @@
-class BackendMock {
+export default class BackendMock {
 
-    retrieveAllTasks() {
+    static mockTest() {
+        return {"works":true};
+    }
+
+    static retrieveAllTasks() {
         return [
             {"id": 1, "task": "a task", "done": false},
             {"id": 2, "task": "another task", "done": false},
@@ -8,3 +12,4 @@ class BackendMock {
         ]
     }
 }
+
