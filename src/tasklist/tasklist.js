@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react"
+import { act } from "react-dom/test-utils";
 import Connector from "../connector/connector";
 
 export default function TaskList() {
@@ -16,28 +17,28 @@ export default function TaskList() {
     
     useEffect(() => {
         getData().then(response => {
-            setTasks(response)
-            setLoading(false)
-            console.log("getData", tasks)
-            console.log("getData", loading)
+            act(()=>{
+                setTasks(response)
+                setLoading(false)
+            })
         })
-        console.log("MID:", tasks)
-        console.log("MID:", loading)
     },[])
-    console.log("after UE",tasks)
-    console.log("after UE",loading)
+
     return(
 
-        !loading ? 
+        loading ?
+        <h2>loading...</h2> 
+        :
         <>  
         <div>
-            <div>
-                <Task taskInfo={tasks[2]} />
-            </div>   
+            {tasks.map(task => (
+                <div key= {task.id}>
+                    <Task taskInfo={task} />
+                </div>   
+            ))}
+            
         </div>
         </> 
-        :
-         <h2>loading...</h2>
     );
         
      
