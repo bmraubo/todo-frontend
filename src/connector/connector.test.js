@@ -4,11 +4,12 @@ import Connector from "./connector"
 // get all tasks
 
 describe("Testing connecting to Backend", () => {
+    const backend = new BackendMock();
 
     it("The Mock is working correctly", async () => {
         global.fetch = jest.fn(() => 
         Promise.resolve({
-            json: () => Promise.resolve(BackendMock.mockTest())
+            json: () => Promise.resolve(backend.mockTest())
         }))
 
         let answer = await Connector.fetchAllTasks()
@@ -19,7 +20,7 @@ describe("Testing connecting to Backend", () => {
     it("Can retrieve all tasks", async () => {
         global.fetch = jest.fn(() => 
         Promise.resolve({
-            json: () => Promise.resolve(BackendMock.retrieveAllTasks())
+            json: () => Promise.resolve(backend.retrieveAllTasks())
         }))
 
         let expectedReturnValue = [

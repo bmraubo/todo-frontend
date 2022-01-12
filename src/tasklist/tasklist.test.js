@@ -3,11 +3,12 @@ import BackendMock from "../connector/backend-mock"
 import TaskList from "./tasklist"
 
 describe("Testing tasklist...", () => {
+    const backend = new BackendMock();
 
     it("test first render", () => {
         global.fetch = jest.fn(() => 
         Promise.resolve({
-            json: () => Promise.resolve(BackendMock.retrieveAllTasks())
+            json: () => Promise.resolve(backend.retrieveAllTasks())
         }))
 
         act(() => {
@@ -20,7 +21,7 @@ describe("Testing tasklist...", () => {
     it("on render, displays list of tasks", async () => {
         global.fetch = jest.fn(() => 
         Promise.resolve({
-            json: () => Promise.resolve(BackendMock.retrieveAllTasks())
+            json: () => Promise.resolve(backend.retrieveAllTasks())
         }))
 
         render(<TaskList />)
