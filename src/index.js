@@ -1,4 +1,4 @@
 import ReactDOM from "react-dom";
-import TaskList from "./tasklist/tasklist";
+import App from "./App"
 
-ReactDOM.render(<TaskList />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
