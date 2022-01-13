@@ -46,16 +46,16 @@ export default function TaskList() {
         <h2>loading...</h2> 
         :
         <>  
-        <div>
+        <ul>
             {tasks.map(task => (
-                <div key= {task.id}>
+                <li key= {task.id}>
                     <Task taskInfo={task} />
                     <EditButton />
                     <DeleteButton />
-                </div>   
+                </li>   
             ))}
             
-        </div>
+        </ul>
         </> 
     );
         
