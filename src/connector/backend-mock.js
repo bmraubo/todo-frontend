@@ -14,7 +14,15 @@ export default class BackendMock {
     }
 
     retrieveAllTasks() {
+        console.log("Fetch Task!")
         return this.database;
+    }
+
+    deleteTask(id) {
+        console.log("delete Task!")
+        let task = this.database.find(e => e.id === id)
+        let index = this.database.indexOf(task)
+        this.database.splice(index, 1)
     }
 }
 

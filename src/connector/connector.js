@@ -6,4 +6,10 @@ export default class Connector {
         let response_json = await response.json();
         return response_json;
     }
+
+    static async deleteTask(id) {
+        let url = `0.0.0.0:5000/todo/${id}`;
+        await fetch(url, {method: "DELETE"});
+        return
+    }
 }
