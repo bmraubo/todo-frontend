@@ -21,7 +21,7 @@ export default function TaskList({testConnector}) {
 
     function DoneStatus(doneStatus) {
         if (doneStatus) {
-            return "Done!";
+            return "Completed!";
         } else {
             return "Not Done!";
         }

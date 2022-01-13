@@ -42,7 +42,19 @@ describe("Testing tasklist...", () => {
         fireEvent.click(screen.getByTestId("Delete 2"))
 
         await waitFor(() => {
-            !expect(screen.queryByTestId("another task")).toBeNull();
+            expect(screen.queryByTestId("another task")).toBeNull();
+        });
+    })
+
+    it("On clicking task, Done status is flipped", async () => {
+        await waitFor(() => {
+            render(<App />)
+        })
+
+        fireEvent.click(screen.getByTestId("a task"))
+
+        await waitFor(() => {
+            expect(screen.queryByTestId("a task").textContent).toContain("Completed")
         });
     })
 });
