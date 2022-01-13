@@ -9,6 +9,8 @@ export default function TaskList() {
     const [loading, setLoading] = useState(true);
     const [tasks, setTasks] = useState();
 
+    const testConnector = new TestConnector()
+
     function Task({ taskInfo }) {
         return (
             <button data-testid={`${taskInfo.task}`}>
@@ -30,11 +32,21 @@ export default function TaskList() {
     }
 
     function DeleteButton({taskId}) {
-        return <button data-testid={`Delete ${taskId}`}>Delete</button>;
+        console.log(taskId)
+        return <button data-testid={`Delete ${taskId}`} onClick={() => {DeleteTask({taskId})}}>Delete</button>;
+    }
+
+    async function DeleteTask({taskId}) {
+        console.log(taskId)
+        await testConnector.deleteTask(taskId);
+        getData().then((response) => {
+            setTasks(response)
+            console.log(response)
+        })
     }
 
     async function getData() {
-        return await TestConnector.fetchAllTasks();
+        return await testConnector.fetchAllTasks();
     }
 
     useEffect(() => {
