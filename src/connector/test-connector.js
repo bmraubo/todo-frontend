@@ -3,6 +3,7 @@ import BackendMock from "./backend-mock";
 export default class TestConnector {
 
     constructor() {
+        console.log("new test connector")
         this.backend = new BackendMock()
     }
 

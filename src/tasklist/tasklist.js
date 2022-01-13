@@ -5,11 +5,11 @@ import { act } from "react-dom/test-utils";
 import TestConnector from "../connector/test-connector";
 import "./tasklist.css"
 
-export default function TaskList() {
+export default function TaskList({testConnector}) {
     const [loading, setLoading] = useState(true);
     const [tasks, setTasks] = useState();
 
-    const testConnector = new TestConnector()
+    let a = 1
 
     function Task({ taskInfo }) {
         return (
@@ -40,8 +40,10 @@ export default function TaskList() {
         console.log(taskId)
         await testConnector.deleteTask(taskId);
         getData().then((response) => {
+            setTasks([])
             setTasks(response)
             console.log(response)
+            console.log(tasks)
         })
     }
 
@@ -53,8 +55,9 @@ export default function TaskList() {
         getData().then((response) => {
             act(() => {
                 setTasks(response);
+                console.log("UE Tasks:", tasks)
                 setLoading(false);
-            });
+            })      
         });
     }, []);
 
