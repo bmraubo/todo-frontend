@@ -42,7 +42,7 @@ describe("Testing tasklist...", () => {
         fireEvent.click(screen.getByTestId("Delete 2"))
 
         await waitFor(() => {
-            !expect(screen.getByTestId("another task"));
+            !expect(screen.queryByTestId("another task")).toBeNull();
         });
     })
 });
