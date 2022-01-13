@@ -1,38 +1,35 @@
-import { render, screen, act, waitFor, } from "@testing-library/react"
-import BackendMock from "../connector/backend-mock"
-import TaskList from "./tasklist"
+import { render, screen, act, waitFor } from "@testing-library/react";
+import BackendMock from "../connector/backend-mock";
+import TaskList from "./tasklist";
 
 describe("Testing tasklist...", () => {
     const backend = new BackendMock();
 
     it("test first render", () => {
-        global.fetch = jest.fn(() => 
-        Promise.resolve({
-            json: () => Promise.resolve(backend.retrieveAllTasks())
-        }))
+        global.fetch = jest.fn(() =>
+            Promise.resolve({
+                json: () => Promise.resolve(backend.retrieveAllTasks()),
+            })
+        );
 
         act(() => {
-            render(<TaskList />)
-        }) 
+            render(<TaskList />);
+        });
 
-        expect(screen.getByText("loading..."))
-    })
+        expect(screen.getByText("loading..."));
+    });
 
     it("on render, displays list of tasks", async () => {
-        global.fetch = jest.fn(() => 
-        Promise.resolve({
-            json: () => Promise.resolve(backend.retrieveAllTasks())
-        }))
+        global.fetch = jest.fn(() =>
+            Promise.resolve({
+                json: () => Promise.resolve(backend.retrieveAllTasks()),
+            })
+        );
 
-        render(<TaskList />)
+        render(<TaskList />);
 
         await waitFor(() => {
-            expect(screen.getAllByTestId("a task"))
-        })
-
-        
-
-        
-
-    })
-})
+            expect(screen.getAllByTestId("a task"));
+        });
+    });
+});
