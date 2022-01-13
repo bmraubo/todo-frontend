@@ -3,6 +3,7 @@ import { useState } from "react";
 import { act } from "react-dom/test-utils";
 //import Connector from "../connector/connector";
 import TestConnector from "../connector/test-connector";
+import "./tasklist.css"
 
 export default function TaskList() {
     const [loading, setLoading] = useState(true);
@@ -11,7 +12,7 @@ export default function TaskList() {
     function Task({ taskInfo }) {
         return (
             <button data-testid="a task">
-                Task: {taskInfo.task} Status: {DoneStatus(taskInfo.done)}
+                Task: {taskInfo.task} &emsp; Status: {DoneStatus(taskInfo.done)}
             </button>
         );
     }
@@ -52,9 +53,17 @@ export default function TaskList() {
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id}>
-                        <Task taskInfo={task} />
-                        <EditButton />
-                        <DeleteButton />
+                        <div className="row">
+                            <div className="column">
+                                <Task taskInfo={task} />
+                            </div>
+                            <div className="columns">
+                                <EditButton />
+                                <DeleteButton />
+                            </div>
+                        </div>
+                        
+                        
                     </li>
                 ))}
             </ul>
