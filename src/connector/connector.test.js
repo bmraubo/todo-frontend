@@ -4,9 +4,10 @@ import Connector from "./connector";
 // get all tasks
 
 describe("Testing connecting to Backend", () => {
-    const backend = new BackendMock();
+    
 
     it("The Mock is working correctly", async () => {
+        let backend = new BackendMock();
         global.fetch = jest.fn(() =>
             Promise.resolve({
                 json: () => Promise.resolve(backend.mockTest()),
@@ -19,6 +20,7 @@ describe("Testing connecting to Backend", () => {
     });
 
     it("Can retrieve all tasks", async () => {
+        let backend = new BackendMock();
         global.fetch = jest.fn(() =>
             Promise.resolve({
                 json: () => Promise.resolve(backend.retrieveAllTasks()),
@@ -37,6 +39,7 @@ describe("Testing connecting to Backend", () => {
     });
 
     it("Can remove a task given a specific ID", async () => {
+        let backend = new BackendMock();
         let id = 2
 
         global.fetch = jest.fn(() =>
@@ -51,6 +54,27 @@ describe("Testing connecting to Backend", () => {
         ];
 
         console.log(backend.retrieveAllTasks())
+
+        expect(backend.retrieveAllTasks()).toStrictEqual(
+            expectedList
+        );
+    })
+
+    it("changes status of Done", async () => {
+        let backend = new BackendMock();
+        let task = { id: 2, task: "another task", done: false }
+        
+        global.fetch = jest.fn(() =>
+            Promise.resolve(backend.changeDoneStatus(task)),
+        );
+
+        await backend.changeDoneStatus(task)
+        
+        let expectedList = [
+            { id: 1, task: "a task", done: false },
+            { id: 2, task: "another task", done: true },
+            { id: 3, task: "a final task", done: false },
+        ];
 
         expect(backend.retrieveAllTasks()).toStrictEqual(
             expectedList

@@ -26,5 +26,25 @@ export default class BackendMock {
         newdb.splice(index, 1)
         this.database = newdb
     }
+
+    changeDoneStatus(taskInfo) {
+        let newdb = this.database.slice()
+        console.log("change done status!")
+        let newTask = taskInfo
+        console.log("New Task", newTask)
+        if (newTask.done == true) {
+            newTask.done = false
+        } else if (newTask.done == false) {
+            newTask.done = true
+        }
+        console.log("New Task", newTask)
+        let task = newdb.find(e => e.id === taskInfo.id)
+        let index = newdb.indexOf(task)
+        console.log("index", index)
+        newdb.splice(index, 1, newTask)
+        this.database = newdb
+        console.log("Done", newTask)
+        console.log("Donedb", this.database)
+    }
 }
 
