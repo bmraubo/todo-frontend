@@ -19,10 +19,12 @@ export default class BackendMock {
     }
 
     deleteTask(id) {
+        let newdb = this.database.slice()
         console.log("delete Task!")
-        let task = this.database.find(e => e.id === id)
-        let index = this.database.indexOf(task)
-        this.database.splice(index, 1)
+        let task = newdb.find(e => e.id === id)
+        let index = newdb.indexOf(task)
+        newdb.splice(index, 1)
+        this.database = newdb
     }
 }
 

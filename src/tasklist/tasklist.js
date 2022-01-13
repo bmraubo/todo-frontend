@@ -40,7 +40,6 @@ export default function TaskList({testConnector}) {
         console.log(taskId)
         await testConnector.deleteTask(taskId);
         getData().then((response) => {
-            setTasks([])
             setTasks(response)
             console.log(response)
             console.log(tasks)
