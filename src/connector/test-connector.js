@@ -15,4 +15,8 @@ export default class TestConnector {
         console.log(id)
         return Promise.resolve(this.backend.deleteTask(id));
     }
+
+    changeDoneStatus(taskInfo) {
+        return Promise.resolve(this.backend.changeDoneStatus(taskInfo))
+    }
 }

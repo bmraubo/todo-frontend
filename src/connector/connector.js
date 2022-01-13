@@ -12,4 +12,10 @@ export default class Connector {
         await fetch(url, {method: "DELETE"});
         return
     }
+    
+    static async changeDoneStatus(taskInfo) {
+        let url = `0.0.0.0:5000/todo/${taskInfo.id}`;
+        await fetch(url, {method: "PUT"});
+        return
+    }
 }

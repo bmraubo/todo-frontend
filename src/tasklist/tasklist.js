@@ -9,11 +9,9 @@ export default function TaskList({testConnector}) {
     const [loading, setLoading] = useState(true);
     const [tasks, setTasks] = useState();
 
-    let a = 1
-
     function Task({ taskInfo }) {
         return (
-            <button data-testid={`${taskInfo.task}`}>
+            <button data-testid={`${taskInfo.task}`} onClick={() => {changeDoneStatus({taskInfo})}}>
                 Task: {taskInfo.task} &emsp; Status: {DoneStatus(taskInfo.done)}
             </button>
         );
@@ -21,7 +19,7 @@ export default function TaskList({testConnector}) {
 
     function DoneStatus(doneStatus) {
         if (doneStatus) {
-            return "Done!";
+            return "Completed!";
         } else {
             return "Not Done!";
         }
@@ -32,17 +30,20 @@ export default function TaskList({testConnector}) {
     }
 
     function DeleteButton({taskId}) {
-        console.log(taskId)
         return <button data-testid={`Delete ${taskId}`} onClick={() => {DeleteTask({taskId})}}>Delete</button>;
     }
 
+    async function changeDoneStatus({taskInfo}) {
+        await testConnector.changeDoneStatus(taskInfo)
+        getData().then((response) => {
+            setTasks(response)
+        })
+    }
+
     async function DeleteTask({taskId}) {
-        console.log(taskId)
         await testConnector.deleteTask(taskId);
         getData().then((response) => {
             setTasks(response)
-            console.log(response)
-            console.log(tasks)
         })
     }
 
@@ -54,7 +55,6 @@ export default function TaskList({testConnector}) {
         getData().then((response) => {
             act(() => {
                 setTasks(response);
-                console.log("UE Tasks:", tasks)
                 setLoading(false);
             })      
         });
