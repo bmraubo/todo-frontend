@@ -13,7 +13,7 @@ export default function TaskList({testConnector}) {
 
     function Task({ taskInfo }) {
         return (
-            <button data-testid={`${taskInfo.task}`}>
+            <button data-testid={`${taskInfo.task}`} onClick={() => {changeDoneStatus({taskInfo})}}>
                 Task: {taskInfo.task} &emsp; Status: {DoneStatus(taskInfo.done)}
             </button>
         );
@@ -34,6 +34,16 @@ export default function TaskList({testConnector}) {
     function DeleteButton({taskId}) {
         console.log(taskId)
         return <button data-testid={`Delete ${taskId}`} onClick={() => {DeleteTask({taskId})}}>Delete</button>;
+    }
+
+    async function changeDoneStatus({taskInfo}) {
+        console.log(taskInfo)
+        await testConnector.changeDoneStatus(taskInfo)
+        getData().then((response) => {
+            setTasks(response)
+            console.log(response)
+            console.log(tasks)
+        })
     }
 
     async function DeleteTask({taskId}) {
