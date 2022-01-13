@@ -1,7 +1,10 @@
 import React from "react";
 import TaskList from "./tasklist/tasklist";
+import TestConnector from "./connector/test-connector";
 
 export default function App() {
+
+    const testConnector = new TestConnector()
     
     return (
         <div>
@@ -9,7 +12,7 @@ export default function App() {
                 REACT TODO LIST
             </div>
             <div>
-                <TaskList />
+                <TaskList testConnector={testConnector} />
             </div>
         </div>
     )

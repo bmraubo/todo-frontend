@@ -35,4 +35,25 @@ describe("Testing connecting to Backend", () => {
             expectedReturnValue
         );
     });
+
+    it("Can remove a task given a specific ID", async () => {
+        let id = 2
+
+        global.fetch = jest.fn(() =>
+            Promise.resolve(backend.deleteTask(id)),
+        );
+        
+        await Connector.deleteTask(id)
+
+        let expectedList = [
+            { id: 1, task: "a task", done: false },
+            { id: 3, task: "a final task", done: false },
+        ];
+
+        console.log(backend.retrieveAllTasks())
+
+        expect(backend.retrieveAllTasks()).toStrictEqual(
+            expectedList
+        );
+    })
 });

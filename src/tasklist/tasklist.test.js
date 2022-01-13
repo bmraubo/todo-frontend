@@ -1,6 +1,6 @@
-import { render, screen, act, waitFor } from "@testing-library/react";
+import { render, screen, act, waitFor, fireEvent } from "@testing-library/react";
 import BackendMock from "../connector/backend-mock";
-import TaskList from "./tasklist";
+import App from "../App"
 
 describe("Testing tasklist...", () => {
     const backend = new BackendMock();
@@ -13,7 +13,7 @@ describe("Testing tasklist...", () => {
         );
 
         act(() => {
-            render(<TaskList />);
+            render(<App />);
         });
 
         expect(screen.getByText("loading..."));
@@ -26,10 +26,23 @@ describe("Testing tasklist...", () => {
             })
         );
 
-        render(<TaskList />);
+        render(<App />);
 
         await waitFor(() => {
             expect(screen.getAllByTestId("a task"));
         });
     });
+
+    it("On Delete button press, relevant task is deleted", async () => {
+
+        await waitFor(() => {
+            render(<App />)
+        })
+        
+        fireEvent.click(screen.getByTestId("Delete 2"))
+
+        await waitFor(() => {
+            !expect(screen.queryByTestId("another task")).toBeNull();
+        });
+    })
 });
