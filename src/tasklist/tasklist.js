@@ -11,7 +11,7 @@ export default function TaskList() {
 
     function Task({ taskInfo }) {
         return (
-            <button data-testid="a task">
+            <button data-testid={`${taskInfo.task}`}>
                 Task: {taskInfo.task} &emsp; Status: {DoneStatus(taskInfo.done)}
             </button>
         );
@@ -29,8 +29,8 @@ export default function TaskList() {
         return <button>Edit</button>;
     }
 
-    function DeleteButton() {
-        return <button>Delete</button>;
+    function DeleteButton({taskId}) {
+        return <button data-testid={`Delete ${taskId}`}>Delete</button>;
     }
 
     async function getData() {
@@ -59,7 +59,7 @@ export default function TaskList() {
                             </div>
                             <div className="columns">
                                 <EditButton />
-                                <DeleteButton />
+                                <DeleteButton taskId={task.id}/>
                             </div>
                         </div>
                         
