@@ -1,7 +1,7 @@
 import React from "react";
 import TaskList from "./tasklist/tasklist";
 import TestConnector from "./connector/test-connector";
-import AddTask from "./add_task";
+import AddTask from "./add_task/add_task";
 
 export default function App() {
 
@@ -10,7 +10,7 @@ export default function App() {
     return (
         <div>
             <div>
-                REACT TODO LIST
+                <h3>REACT TODO LIST</h3>
             </div>
             <div>
                 <AddTask />
