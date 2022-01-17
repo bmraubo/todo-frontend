@@ -4,7 +4,6 @@ import TestConnector from "./connector/test-connector";
 import AddTask from "./add_task/add_task";
 
 export default function App() {
-
     const testConnector = new TestConnector()
     
     return (
@@ -13,7 +12,7 @@ export default function App() {
                 <h3>REACT TODO LIST</h3>
             </div>
             <div>
-                <AddTask />
+                <AddTask connector ={testConnector}/>
             </div>
             <div>
                 <TaskList testConnector={testConnector} />

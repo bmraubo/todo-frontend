@@ -5,7 +5,8 @@ export default function AddTask(props) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        console.log(taskInput.current.value)
+        let result = props.connector.addTask(taskInput.current.value)
+        console.log(result)
     }
     
     return (

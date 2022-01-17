@@ -1,6 +1,7 @@
 export default class BackendMock {
     
     constructor() {
+        this.id = 4
         this.database = [
             {"id": 1, "task": "a task", "done": false},
             {"id": 2, "task": "another task", "done": false},
@@ -40,6 +41,13 @@ export default class BackendMock {
         let index = newdb.indexOf(task)
         newdb.splice(index, 1, newTask)
         this.database = newdb
+    }
+
+    addTask(taskData) {
+        let task = {"id": this.id, "task": taskData.task, "done": false}
+        this.database.push(task)
+        this.id = this.id + 1
+        return task
     }
 }
 
