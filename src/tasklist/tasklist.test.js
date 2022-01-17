@@ -5,7 +5,7 @@ import App from "../App"
 describe("Testing tasklist...", () => {
     const backend = new BackendMock();
 
-    it("test first render", () => {
+    it("test first render", async () => {
         global.fetch = jest.fn(() =>
             Promise.resolve({
                 json: () => Promise.resolve(backend.retrieveAllTasks()),
@@ -16,7 +16,9 @@ describe("Testing tasklist...", () => {
             render(<App />);
         });
 
-        expect(screen.getByText("loading..."));
+        await waitFor(() => {
+            expect(screen.getByText("loading..."));
+        })
     });
 
     it("on render, displays list of tasks", async () => {
