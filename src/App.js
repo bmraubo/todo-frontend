@@ -1,6 +1,7 @@
 import React from "react";
 import TaskList from "./tasklist/tasklist";
 import TestConnector from "./connector/test-connector";
+import AddTask from "./add_task";
 
 export default function App() {
 
@@ -10,6 +11,9 @@ export default function App() {
         <div>
             <div>
                 REACT TODO LIST
+            </div>
+            <div>
+                <AddTask />
             </div>
             <div>
                 <TaskList testConnector={testConnector} />
