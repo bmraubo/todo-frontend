@@ -18,4 +18,10 @@ export default class Connector {
         await fetch(url, {method: "PUT"});
         return
     }
+
+    static async addTask(userInput) {
+        let url = '0.0.0.0:5000/todo'
+        let taskInfo = {"task": userInput}
+        return await (await fetch(url, {method: "POST", body: taskInfo})).json()
+    }
 }

@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState, act } from "react";
 import TaskList from "./tasklist/tasklist";
 import TestConnector from "./connector/test-connector";
+import AddTask from "./add_task/add_task";
+
+const connector = new TestConnector()
 
 export default function App() {
+    const [loading, setLoading] = useState(true);
+    const [tasks, setTasks] = useState();
 
-    const testConnector = new TestConnector()
+    async function getData() {
+        return connector.fetchAllTasks().then((response) => {
+            setTasks(response)
+        });
+    }
+
+    useEffect(() => {
+        getData().then(() => {
+            setLoading(false);
+        });
+    }, []);
     
     return (
         <div>
             <div>
-                REACT TODO LIST
+                <h3>REACT TODO LIST</h3>
             </div>
             <div>
-                <TaskList testConnector={testConnector} />
+                <AddTask connector ={connector} getData={getData}/>
+            </div>
+            <div>
+                <TaskList connector={connector} getData={getData} tasks={tasks} setTasks={setTasks} loading={loading}/>
             </div>
         </div>
     )

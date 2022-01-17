@@ -19,4 +19,9 @@ export default class TestConnector {
     changeDoneStatus(taskInfo) {
         return Promise.resolve(this.backend.changeDoneStatus(taskInfo))
     }
+
+    addTask(userInput) {
+        let taskData = {"task": userInput}
+        return Promise.resolve(this.backend.addTask(taskData))
+    }
 }

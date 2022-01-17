@@ -68,7 +68,7 @@ describe("Testing connecting to Backend", () => {
             Promise.resolve(backend.changeDoneStatus(task)),
         );
 
-        await backend.changeDoneStatus(task)
+        await Connector.changeDoneStatus(task)
         
         let expectedList = [
             { id: 1, task: "a task", done: false },
@@ -79,5 +79,23 @@ describe("Testing connecting to Backend", () => {
         expect(backend.retrieveAllTasks()).toStrictEqual(
             expectedList
         );
+    })
+
+    it("added a task", async () => {
+        let backend = new BackendMock();
+
+        let newTask = "Hello There"
+
+        global.fetch = jest.fn(() =>
+            Promise.resolve({
+                json: () => Promise.resolve(backend.addTask({"task": newTask})),
+            })
+        );
+
+        let result = await Connector.addTask(newTask)
+
+        let expectedResult = { id: 4, task: "Hello There", done: false };
+
+        expect(result).toStrictEqual(expectedResult)
     })
 });
