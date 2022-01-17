@@ -1,14 +1,7 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { act } from "react-dom/test-utils";
-//import Connector from "../connector/connector";
-import TestConnector from "../connector/test-connector";
+import React, { useEffect, useState } from "react";
 import "./tasklist.css"
 
-export default function TaskList({testConnector}) {
-    const [loading, setLoading] = useState(true);
-    const [tasks, setTasks] = useState();
-
+export default function TaskList(props) {
     function Task({ taskInfo }) {
         return (
             <button data-testid={`${taskInfo.task}`} onClick={() => {changeDoneStatus({taskInfo})}}>
@@ -34,38 +27,21 @@ export default function TaskList({testConnector}) {
     }
 
     async function changeDoneStatus({taskInfo}) {
-        await testConnector.changeDoneStatus(taskInfo)
-        getData().then((response) => {
-            setTasks(response)
-        })
+        await props.connector.changeDoneStatus(taskInfo)
+        props.getData()
     }
 
     async function DeleteTask({taskId}) {
-        await testConnector.deleteTask(taskId);
-        getData().then((response) => {
-            setTasks(response)
-        })
+        await props.connector.deleteTask(taskId);
+        props.getData()
     }
 
-    async function getData() {
-        return await testConnector.fetchAllTasks();
-    }
-
-    useEffect(() => {
-        getData().then((response) => {
-            act(() => {
-                setTasks(response);
-                setLoading(false);
-            })      
-        });
-    }, []);
-
-    return loading ? (
+    return props.loading ? (
         <h2>loading...</h2>
     ) : (
         <>
             <ul>
-                {tasks.map((task) => (
+                {props.tasks.map((task) => (
                     <li key={task.id}>
                         <div className="row">
                             <div className="column">

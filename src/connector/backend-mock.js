@@ -15,13 +15,13 @@ export default class BackendMock {
     }
 
     retrieveAllTasks() {
-        console.log("Fetch Task!")
+        console.log("Fetch Task List!")
         return this.database;
     }
 
     deleteTask(id) {
         let newdb = this.database.slice()
-        console.log("delete Task!")
+        console.log(`Deleting Task ID${id}`)
         let task = newdb.find(e => e.id === id)
         let index = newdb.indexOf(task)
         newdb.splice(index, 1)
@@ -30,7 +30,7 @@ export default class BackendMock {
 
     changeDoneStatus(taskInfo) {
         let newdb = this.database.slice()
-        console.log("change done status!")
+        console.log("Changing Done Status")
         let newTask = taskInfo
         if (newTask.done == true) {
             newTask.done = false
@@ -44,8 +44,11 @@ export default class BackendMock {
     }
 
     addTask(taskData) {
+        console.log(`Adding Task: ${taskData.task}`)
+        let newdb = this.database;
         let task = {"id": this.id, "task": taskData.task, "done": false}
-        this.database.push(task)
+        newdb.push(task)
+        this.database = newdb
         this.id = this.id + 1
         return task
     }
