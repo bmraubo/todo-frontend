@@ -45,9 +45,9 @@ export default class BackendMock {
 
     addTask(taskData) {
         console.log(`Adding Task: ${taskData.task}`)
-        let newdb = this.database;
         let task = {"id": this.id, "task": taskData.task, "done": false}
-        newdb.push(task)
+        let newdb = this.database.concat([task])
+        console.log(newdb)
         this.database = newdb
         this.id = this.id + 1
         return task

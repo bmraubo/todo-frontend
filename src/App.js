@@ -12,13 +12,12 @@ export default function App() {
 
     async function getData() {
         return connector.fetchAllTasks().then((response) => {
-            setTasks([])
             setTasks(response)
         });
     }
 
     useEffect(() => {
-        getData().then((response) => {
+        getData().then(() => {
             setLoading(false);
         });
     }, []);
