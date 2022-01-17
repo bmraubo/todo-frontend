@@ -12,7 +12,7 @@ export default function AddTask(props) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type='text' placeholder="Enter New Task" ref={taskInput}></input>
+                <input type='text' placeholder="Enter New Task" ref={taskInput} data-testid="input"></input>
                 <button>ADD TASK</button>
             </form>
         </div>
