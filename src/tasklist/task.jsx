@@ -25,11 +25,12 @@ export default function Task(props) {
         )
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
         const newTask = {"id": props.task.id, "task": taskInput.current.value, "done": props.task.done}
-        alert(JSON.stringify(newTask))
+        await props.connector.updateTask(newTask)
         setEditMode(false)
+        props.getData()
     }
 
     async function changeDoneStatus() {

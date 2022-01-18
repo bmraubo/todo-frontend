@@ -81,7 +81,7 @@ describe("Testing tasklist...", () => {
         fireEvent.change(screen.getByTestId("edit task input"), {target: {value: "Hello"}})
 
         await waitFor(() => {
-            expect(screen.queryByTestId("Hello")).toBeTruthy();
+            expect(screen.queryByTestId("Hello"));
         });
     })
 });

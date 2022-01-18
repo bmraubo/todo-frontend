@@ -52,5 +52,16 @@ export default class BackendMock {
         this.id = this.id + 1
         return task
     }
+
+    updateTask(taskData) {
+        let newdb = this.database.slice()
+        console.log("Editing Task")
+        let newTask = taskData
+        let task = newdb.find(e => e.id === taskData.id)
+        let index = newdb.indexOf(task)
+        newdb.splice(index, 1, newTask)
+        this.database = newdb
+        return taskData
+    }
 }
 
