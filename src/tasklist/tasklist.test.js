@@ -59,4 +59,29 @@ describe("Testing tasklist...", () => {
             expect(screen.queryByTestId("a task").textContent).toContain("Completed")
         });
     })
+
+    it("on clicking Edit, an input box is displayed", async () => {
+        await waitFor(() => {
+            render(<App />)
+        })
+
+        fireEvent.click(screen.getByTestId("Edit 1"))
+
+        await waitFor(() => {
+            expect(screen.queryByTestId("edit task input")).toBeTruthy();
+        });
+    })
+
+    it("on editing task, the updated task is displayed on the list", async () => {
+        await waitFor(() => {
+            render(<App />)
+        })
+
+        fireEvent.click(screen.getByTestId("Edit 1"))
+        fireEvent.change(screen.getByTestId("edit task input"), {target: {value: "Hello"}})
+
+        await waitFor(() => {
+            expect(screen.queryByTestId("Hello"));
+        });
+    })
 });
