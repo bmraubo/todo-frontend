@@ -22,7 +22,7 @@ export default class Connector {
     static async addTask(userInput) {
         let url = '0.0.0.0:5000/todo'
         let taskInfo = {"task": userInput}
-        return await fetch(url, {method: "POST", body: taskInfo}).json()
+        return await (await fetch(url, {method: "POST", body: taskInfo})).json()
     }
 
     static async updateTask(taskData) {
