@@ -1,23 +1,24 @@
+import React from "react"
 import "./tasklist.css"
 
 export default function Task(props) {
-    const taskMessage = `Task: ${props.task.task} &emsp; Status: ${DoneStatus(props.task.done)}`
+    const taskMessage = `Task: ${props.task.task} Status: ${DoneStatus(props.task.done)}`
 
     function Button(props) {
         return (
-            <button data-testid={props.testid} onClick={props.handleClick}>
+            <button data-testid={props.testid} onClick={props.onClick}>
                 {props.message}
             </button>
         )
     }
 
-    async function changeDoneStatus({taskInfo}) {
-        await props.connector.changeDoneStatus(taskInfo)
+    async function changeDoneStatus() {
+        await props.connector.changeDoneStatus(props.task)
         props.getData()
     }
 
-    async function DeleteTask({taskId}) {
-        await props.connector.deleteTask(taskId);
+    async function DeleteTask() {
+        await props.connector.deleteTask(props.task.id);
         props.getData()
     }
 
@@ -29,14 +30,14 @@ export default function Task(props) {
         }
     }
 
-    return (
+    return (  
         <div className="row">
             <div className="column">
-                <Button testid={props.task.task} onClick={() => changeDoneStatus(props.task)} message={taskMessage}/>
+                <Button testid={props.task.task} onClick={changeDoneStatus} message={taskMessage}/>
             </div>
-            <div className="columns">
+            <div>
                 <Button testid={`Edit ${props.task.id}`} message="Edit"/>
-                <Button taskId={`Delete task.id`} onClick={() => DeleteTask(props.task.id)} message="Delete"/>
+                <Button testid={`Delete ${props.task.id}`} onClick={DeleteTask} message="Delete"/>
             </div>
         </div>
     )

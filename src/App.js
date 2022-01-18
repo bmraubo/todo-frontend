@@ -31,7 +31,7 @@ export default function App() {
                 <AddTask connector ={connector} getData={getData}/>
             </div>
             <div>
-                <TaskList connector={connector} getData={getData} tasks={tasks} setTasks={setTasks} loading={loading}/>
+                <TaskList connector={connector} getData={getData} tasks={tasks} loading={loading}/>
             </div>
         </div>
     )
