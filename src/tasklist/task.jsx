@@ -18,7 +18,7 @@ export default function Task(props) {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder={props.task.task} ref={taskInput}></input>
+                    <input type="text" placeholder={props.task.task} ref={taskInput} data-testid="edit task input"></input>
                     <button>Edit Task</button>
                 </form>
             </div>
