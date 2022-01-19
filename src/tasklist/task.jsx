@@ -8,10 +8,18 @@ export default function Task(props) {
 
     function Button(props) {
         return (
-            <button data-testid={props.testid} onClick={props.onClick}>
+            <button className={props.className} data-testid={props.testid} onClick={props.onClick}>
                 {props.message}
             </button>
         )
+    }
+
+    function TaskButtonColourController() {
+        if (props.task.done) {
+            return "task-done"
+        } else {
+            return "task-not-done"
+        }
     }
 
     async function changeDoneStatus() {
@@ -39,11 +47,11 @@ export default function Task(props) {
             }  
             <div className="row">
                 <div className="column">
-                    <Button testid={props.task.task} onClick={changeDoneStatus} message={taskMessage}/>
+                    <Button testid={props.task.task} onClick={changeDoneStatus} message={taskMessage} className={TaskButtonColourController()}/>
                 </div>
                 <div>
-                    <Button testid={`Edit ${props.task.id}`} onClick={() => {setEditMode(!editMode)}} message="Edit"/>
-                    <Button testid={`Delete ${props.task.id}`} onClick={DeleteTask} message="Delete"/>
+                    <Button testid={`Edit ${props.task.id}`} onClick={() => {setEditMode(!editMode)}} message="Edit" className="edit"/>
+                    <Button testid={`Delete ${props.task.id}`} onClick={DeleteTask} message="Delete" className="delete"/>
                 </div>
             </div>
         </div>

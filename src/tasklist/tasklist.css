@@ -3,17 +3,90 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+    border: black;
+    border-width: 5px;
 }
 
 .column {
     display: flex;
     flex-direction: column;
-    flex-basis: 100%;
+    flex-basis: 25%;
     flex: 1;
+}
+
+.add-task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html {
+    background-color: lightblue;
+}
+
+h3 {
+    font: 700 large system-ui;
+    text-align: center;
 }
 
 ul {
     list-style-type: none;
     margin: 5;
     padding: 0;
+}
+
+input[type="text"] {
+    padding: 3px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+input[type="submit"] {
+    font: 400 small system-ui;
+    background-color: white;
+    border-color: black;
+    border: 10;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font: 700 small system-ui;
+    background-color: white;
+    padding: 3px;
+    margin: 0.3px;
+}
+
+button {
+    font: 400 small system-ui;
+    background-color: white;
+    border-color: black;
+    border-radius: 4px;
+    border: 10;
+    font: 700 small system-ui;
+    padding: 10px;
+    margin: 0.3px;
+}
+
+button.task-done {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: lightgreen;
+    font: 700 small system-ui;
+}
+
+button.task-not-done {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: lightsalmon;
+    font: 700 small system-ui;
+}
+
+button.edit {
+    border-radius: 2px;
+}
+
+button.delete {
+    background-color: red;
+    color: white;
+    font: 700 small system-ui;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
