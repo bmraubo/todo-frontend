@@ -28,9 +28,10 @@ ul {
     padding: 0;
 }
 
-input {
+input[type="text"] {
     padding: 3px;
-    border-radius: 4px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 input[type="submit"] {
@@ -38,7 +39,8 @@ input[type="submit"] {
     background-color: white;
     border-color: black;
     border: 10;
-    border-radius: 4px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     font: 700 small system-ui;
     background-color: white;
     padding: 3px;
@@ -57,17 +59,27 @@ button {
 }
 
 button.task-done {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     background-color: lightgreen;
     font: 700 small system-ui;
 }
 
 button.task-not-done {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     background-color: lightsalmon;
     font: 700 small system-ui;
+}
+
+button.edit {
+    border-radius: 2px;
 }
 
 button.delete {
     background-color: red;
     color: white;
     font: 700 small system-ui;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

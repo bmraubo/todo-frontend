@@ -50,7 +50,7 @@ export default function Task(props) {
                     <Button testid={props.task.task} onClick={changeDoneStatus} message={taskMessage} className={TaskButtonColourController()}/>
                 </div>
                 <div>
-                    <Button testid={`Edit ${props.task.id}`} onClick={() => {setEditMode(!editMode)}} message="Edit"/>
+                    <Button testid={`Edit ${props.task.id}`} onClick={() => {setEditMode(!editMode)}} message="Edit" className="edit"/>
                     <Button testid={`Delete ${props.task.id}`} onClick={DeleteTask} message="Delete" className="delete"/>
                 </div>
             </div>
