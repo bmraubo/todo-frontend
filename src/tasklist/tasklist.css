@@ -3,17 +3,44 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+    border: black;
+    border-width: 5px;
 }
 
 .column {
     display: flex;
     flex-direction: column;
-    flex-basis: 100%;
+    flex-basis: 25%;
     flex: 1;
+}
+
+h3 {
+    font: 700 large system-ui;
 }
 
 ul {
     list-style-type: none;
     margin: 5;
     padding: 0;
+}
+
+input[type="submit"] {
+    font: 400 small system-ui;
+    background-color: white;
+    border-color: black;
+    border: 10;
+}
+
+button {
+    font: 400 small system-ui;
+    background-color: white;
+    border-color: black;
+    border: 10;
+}
+
+button.delete {
+    background-color: red;
+    border-color: red;
+    color: white;
+    font: 700 small system-ui;
 }

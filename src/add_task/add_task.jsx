@@ -1,3 +1,5 @@
+import "../tasklist/tasklist.css"
+
 import React, { useState } from "react"
 
 export default function AddTask(props) {
@@ -11,7 +13,7 @@ export default function AddTask(props) {
     }
     
     return (
-        <div>
+        <div className="row">
             <form onSubmit={handleSubmit}>
                 <input type='text' placeholder="Enter New Task" value={taskInput} onChange={(event)=>setTaskInput(event.target.value)} data-testid="input"></input>
                 <input type="submit" value="Add Task" />
