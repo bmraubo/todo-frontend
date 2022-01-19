@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 export default function InputBox(props) {
-    const [taskInput, setTaskInput] = useState(" ");
+    const [taskInput, setTaskInput] = useState("");
 
     async function handleSubmit(event) {
         event.preventDefault()
