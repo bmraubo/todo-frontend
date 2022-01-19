@@ -18,7 +18,7 @@ describe("Testing adding a task", () => {
         })
 
         fireEvent.change(screen.getByTestId("input"), {target: {value: "Hello"}})
-        fireEvent.click(screen.getByText("ADD TASK"))
+        fireEvent.click(screen.getByText("Add Task"))
 
         await waitFor(() => {
             expect(screen.queryByTestId("Hello")).toBeTruthy();
