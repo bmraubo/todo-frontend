@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useState } from "react"
 
 export default function AddTask(props) {
-    let taskInput = React.createRef();
+    const [taskInput, setTaskInput] = useState("Enter New Task");
 
     async function handleSubmit(event) {
         event.preventDefault()
-        await props.connector.addTask(taskInput.current.value)
+        await props.connector.addTask(taskInput)
         props.getData();
     }
     
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type='text' placeholder="Enter New Task" ref={taskInput} data-testid="input"></input>
-                <button>ADD TASK</button>
+                <input type='text' value={taskInput} onChange={(event)=>setTaskInput(event.target.value)} data-testid="input"></input>
+                <input type="submit" value="Add Task" />
             </form>
         </div>
     )
