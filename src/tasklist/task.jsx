@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import InputBox from "./InputBox"
 import "./tasklist.css"
 
 export default function Task(props) {
     const taskMessage = `Task: ${props.task.task} Status: ${DoneStatus(props.task.done)}`
     const [editMode, setEditMode] = useState(false)
-    let taskInput = React.createRef();
+    
+    let taskInputOld = React.createRef();
 
     function Button(props) {
         return (
@@ -14,21 +16,16 @@ export default function Task(props) {
         )
     }
 
-    function InputBox(props) {
-        return (
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder={props.task.task} ref={taskInput} data-testid="edit task input"></input>
-                    <button>Edit Task</button>
-                </form>
-            </div>
-        )
-    }
+    
 
-    async function handleSubmit(event) {
+    useEffect(()=>{},[])
+
+    
+
+    async function handleSubmitOld(event) {
         event.preventDefault()
-        const newTask = {"id": props.task.id, "task": taskInput.current.value, "done": props.task.done}
-        await props.connector.updateTask(newTask)
+        //const newTask = {"id": props.task.id, "task": taskInput.current.value, "done": props.task.done}
+        //await props.connector.updateTask(newTask)
         setEditMode(false)
         props.getData()
     }
@@ -54,7 +51,7 @@ export default function Task(props) {
     return (
         <div>
             {editMode &&
-                <InputBox task={props.task} />
+                <InputBox task={props.task} getData={props.getData} setEditMode={setEditMode} connector={props.connector}/>
             }  
             <div className="row">
                 <div className="column">
