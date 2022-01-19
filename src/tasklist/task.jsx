@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import InputBox from "./InputBox"
 import "./tasklist.css"
 
 export default function Task(props) {
     const taskMessage = `Task: ${props.task.task} Status: ${DoneStatus(props.task.done)}`
     const [editMode, setEditMode] = useState(false)
-    
-    let taskInputOld = React.createRef();
 
     function Button(props) {
         return (
@@ -14,20 +12,6 @@ export default function Task(props) {
                 {props.message}
             </button>
         )
-    }
-
-    
-
-    useEffect(()=>{},[])
-
-    
-
-    async function handleSubmitOld(event) {
-        event.preventDefault()
-        //const newTask = {"id": props.task.id, "task": taskInput.current.value, "done": props.task.done}
-        //await props.connector.updateTask(newTask)
-        setEditMode(false)
-        props.getData()
     }
 
     async function changeDoneStatus() {
