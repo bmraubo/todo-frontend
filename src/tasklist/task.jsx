@@ -14,6 +14,14 @@ export default function Task(props) {
         )
     }
 
+    function TaskButtonColourController() {
+        if (props.task.done) {
+            return "task-done"
+        } else {
+            return "task-not-done"
+        }
+    }
+
     async function changeDoneStatus() {
         await props.connector.changeDoneStatus(props.task)
         props.getData()
@@ -39,7 +47,7 @@ export default function Task(props) {
             }  
             <div className="row">
                 <div className="column">
-                    <Button testid={props.task.task} onClick={changeDoneStatus} message={taskMessage}/>
+                    <Button testid={props.task.task} onClick={changeDoneStatus} message={taskMessage} className={TaskButtonColourController()}/>
                 </div>
                 <div>
                     <Button testid={`Edit ${props.task.id}`} onClick={() => {setEditMode(!editMode)}} message="Edit"/>
