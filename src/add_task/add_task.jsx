@@ -13,7 +13,7 @@ export default function AddTask(props) {
     }
     
     return (
-        <div className="row">
+        <div className="add-task">
             <form onSubmit={handleSubmit}>
                 <input type='text' placeholder="Enter New Task" value={taskInput} onChange={(event)=>setTaskInput(event.target.value)} data-testid="input"></input>
                 <input type="submit" value="Add Task" />

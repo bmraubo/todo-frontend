@@ -21,7 +21,7 @@ export default function InputBox(props) {
                     onChange={(event) => setTaskInput(event.target.value)} 
                     data-testid="edit task input"
                 ></input>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Edit Task" />
             </form>
         </div>
     )

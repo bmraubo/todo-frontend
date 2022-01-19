@@ -14,12 +14,19 @@
     flex: 1;
 }
 
+.add-task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 html {
     background-color: lightblue;
 }
 
 h3 {
     font: 700 large system-ui;
+    text-align: center;
 }
 
 ul {
