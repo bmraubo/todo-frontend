@@ -14,7 +14,13 @@ export default function InputBox(props) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder={props.task.task} value={taskInput} onChange={(event) => setTaskInput(event.target.value)} data-testid="edit task input"></input>
+                <input 
+                    type="text" 
+                    placeholder={props.task.task} 
+                    value={taskInput} 
+                    onChange={(event) => setTaskInput(event.target.value)} 
+                    data-testid="edit task input"
+                ></input>
                 <input type="submit" value="Submit" />
             </form>
         </div>
