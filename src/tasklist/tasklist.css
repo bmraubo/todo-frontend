@@ -63,6 +63,7 @@ button {
     font: 700 small system-ui;
     padding: 10px;
     margin: 0.3px;
+    text-align: center;
 }
 
 button.task-done {
@@ -70,6 +71,7 @@ button.task-done {
     border-bottom-left-radius: 10px;
     background-color: lightgreen;
     font: 700 small system-ui;
+    text-align: left;
 }
 
 button.task-not-done {
@@ -77,6 +79,7 @@ button.task-not-done {
     border-bottom-left-radius: 10px;
     background-color: lightsalmon;
     font: 700 small system-ui;
+    text-align: left;
 }
 
 button.edit {
