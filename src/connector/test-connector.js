@@ -17,6 +17,7 @@ export default class TestConnector {
     }
 
     changeDoneStatus(taskInfo) {
+        taskInfo.done = !taskInfo.done
         return Promise.resolve(this.backend.changeDoneStatus(taskInfo))
     }
 
