@@ -15,19 +15,21 @@ export default class Connector {
     }
     
     static async changeDoneStatus(taskInfo) {
+        taskInfo.done = !taskInfo.done;
+        console.log(taskInfo)
         let url = `https://http-echo-server-8l.herokuapp.com/todo/${taskInfo.id}`;
-        await fetch(url, {method: "PUT"});
-        return
+        return await (await fetch(url, {method: "PUT", headers: new Headers({'content-type': 'application/x-www-form-urlencoded'}), body: JSON.stringify(taskInfo)})).json();
     }
 
     static async addTask(userInput) {
         let url = 'https://http-echo-server-8l.herokuapp.com/todo'
+        console.log(userInput)
         let taskInfo = {"task": userInput}
-        return await (await fetch(url, {method: "POST", body: taskInfo})).json()
+        return await (await fetch(url, {method: "POST", headers: new Headers({'content-type': 'application/x-www-form-urlencoded'}), body: JSON.stringify(taskInfo)})).json()
     }
 
     static async updateTask(taskData) {
         const url = `https://http-echo-server-8l.herokuapp.com/todo/${taskData.id}`
-        return await (await fetch(url, {method: "PUT", body: taskData})).json()
+        return await (await fetch(url, {method: "PUT", headers: new Headers({'content-type': 'application/x-www-form-urlencoded'}), body: JSON.stringify(taskData)})).json()
     }
 }
