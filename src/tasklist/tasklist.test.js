@@ -1,9 +1,11 @@
 import { render, screen, act, waitFor, fireEvent } from "@testing-library/react";
 import BackendMock from "../connector/backend-mock";
+import TestConnector from "../connector/test-connector"
 import App from "../App"
 
 describe("Testing tasklist...", () => {
     const backend = new BackendMock();
+    const connector = new TestConnector();
 
     it("test first render", async () => {
         global.fetch = jest.fn(() =>
@@ -13,7 +15,7 @@ describe("Testing tasklist...", () => {
         );
 
         act(() => {
-            render(<App />);
+            render(<App connector={connector}/>);
         });
 
         await waitFor(() => {
@@ -28,7 +30,7 @@ describe("Testing tasklist...", () => {
             })
         );
 
-        render(<App />);
+        render(<App connector={connector}/>);
 
         await waitFor(() => {
             expect(screen.getAllByTestId("a task"));
@@ -38,7 +40,7 @@ describe("Testing tasklist...", () => {
     it("On Delete button press, relevant task is deleted", async () => {
 
         await waitFor(() => {
-            render(<App />)
+            render(<App connector={connector}/>)
         })
         
         fireEvent.click(screen.getByTestId("Delete 2"))
@@ -50,7 +52,7 @@ describe("Testing tasklist...", () => {
 
     it("On clicking task, Done status is flipped", async () => {
         await waitFor(() => {
-            render(<App />)
+            render(<App connector={connector}/>)
         })
 
         fireEvent.click(screen.getByTestId("a task"))
@@ -62,7 +64,7 @@ describe("Testing tasklist...", () => {
 
     it("on clicking Edit, an input box is displayed", async () => {
         await waitFor(() => {
-            render(<App />)
+            render(<App connector={connector}/>)
         })
 
         fireEvent.click(screen.getByTestId("Edit 1"))
@@ -74,7 +76,7 @@ describe("Testing tasklist...", () => {
 
     it("on editing task, the updated task is displayed on the list", async () => {
         await waitFor(() => {
-            render(<App />)
+            render(<App connector={connector}/>)
         })
 
         fireEvent.click(screen.getByTestId("Edit 1"))

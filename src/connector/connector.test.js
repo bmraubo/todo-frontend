@@ -65,7 +65,9 @@ describe("Testing connecting to Backend", () => {
         let task = { id: 2, task: "another task", done: false }
         
         global.fetch = jest.fn(() =>
-            Promise.resolve(backend.changeDoneStatus(task)),
+            Promise.resolve({
+                json: () => Promise.resolve(backend.changeDoneStatus(task)),
+            })
         );
 
         await Connector.changeDoneStatus(task)

@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useState, act } from "react";
 import TaskList from "./tasklist/tasklist";
-import TestConnector from "./connector/test-connector";
 import AddTask from "./add_task/add_task";
 
-const connector = new TestConnector()
 
-export default function App() {
+
+export default function App({connector}) {
     const [loading, setLoading] = useState(true);
     const [tasks, setTasks] = useState();
 

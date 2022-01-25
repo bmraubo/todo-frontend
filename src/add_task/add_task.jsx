@@ -7,6 +7,7 @@ export default function AddTask(props) {
 
     async function handleSubmit(event) {
         event.preventDefault()
+        console.log("Submit " + taskInput)
         await props.connector.addTask(taskInput)
         props.getData();
         setTaskInput("")

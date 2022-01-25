@@ -32,15 +32,12 @@ export default class BackendMock {
         let newdb = this.database.slice()
         console.log("Changing Done Status")
         let newTask = taskInfo
-        if (newTask.done == true) {
-            newTask.done = false
-        } else if (newTask.done == false) {
-            newTask.done = true
-        }
+        console.log("New task " + newTask)
         let task = newdb.find(e => e.id === taskInfo.id)
         let index = newdb.indexOf(task)
         newdb.splice(index, 1, newTask)
         this.database = newdb
+        console.log(this.database)
     }
 
     addTask(taskData) {

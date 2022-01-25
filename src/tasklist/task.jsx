@@ -3,7 +3,7 @@ import InputBox from "./InputBox"
 import "./tasklist.css"
 
 export default function Task(props) {
-    const taskMessage = `Task: ${props.task.task} Status: ${DoneStatus(props.task.done)}`
+    const taskMessage = `Task: ${props.task.task}  Status: ${DoneStatus(props.task.done)}`
     const [editMode, setEditMode] = useState(false)
 
     function Button(props) {
